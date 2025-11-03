@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta chatset="UTF-8">
+        <meta name="viewport" content="width=device, initial-scale=1.0">
+        <title> Fashion Particle</title>
+        <link rel="stylesheet" href="style.css">
+  
+
+
+    </head>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    const members = [
+      {
+        img: "images/member-1.jpg",
+        name: "Iris Petcu CEO",
+        feedback: "Leading fashion toward a sustainable, transparent, and ethical future."
+      },
+      {
+        img: "images/member-2.jpg",
+        name: "Andrei Bancila CTO",
+        feedback: "Building smart tech that empowers sustainable sourcing and real impact."
+      },
+      {
+        img: "images/member-3.jpg",
+        name: "Saleem Zafar CRO",
+        feedback: "Reducing environmental and supplier risks through sustainable, transparent practices."
+      }
+    ];
+
+    let memberIndex = 0;
+    const memberSlide = document.querySelector(".member-slide");
+    const leftBtn = document.querySelector(".member-left-btn");
+    const rightBtn = document.querySelector(".member-right-btn");
+    const dotsContainer = document.querySelector(".members-dots");
+
+    function renderMember(index) {
+      memberSlide.classList.remove("fade");
+      void memberSlide.offsetWidth; // trigger reflow for animation
+
+      const m = members[index];
+      memberSlide.innerHTML = `
+        <img src="${m.img}" alt="${m.name}" class="member-image">
+        <h3 class="member-name">${m.name}</h3>
+        <i class="feedback">"${m.feedback}"</i>
+      `;
+
+      // Update dots
+      dotsContainer.innerHTML = members.map((_, i) =>
+        `<span class="dot${i === index ? " active" : ""}" data-index="${i}"></span>`
+      ).join("");
+
+      memberSlide.classList.add("fade");
+    }
+
+    leftBtn.addEventListener("click", () => {
+      memberIndex = (memberIndex - 1 + members.length) % members.length;
+      renderMember(memberIndex);
+    });
+
+    rightBtn.addEventListener("click", () => {
+      memberIndex = (memberIndex + 1) % members.length;
+      renderMember(memberIndex);
+    });
+
+    dotsContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("dot")) {
+        memberIndex = Number(e.target.dataset.index);
+        renderMember(memberIndex);
+      }
+    });
+
+    renderMember(memberIndex);
+  });
+</script>
+<!-- ...existing code... -->
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sliderData = [
+      {
+        title: "Water Waste",
+        text: "It takes around 2,700 liters of water to make just one cotton T-shirt. That’s enough drinking water for one person for 2.5 years!",
+        img: "images/water-waste.jpg"
+      },
+      {
+        title: "Waste Pollution",
+        text: "The average American discards around 80 pounds of clothes yearly, most ending up in landfills. Fast fashion drives this throwaway culture.",
+        img: "images/waste-pollution.jpg"
+      },
+      {
+        title: "Microfiber Pollution",
+        text: "Synthetic fibers shed microplastics in every wash, ending up in oceans and infiltrating marine life and the food chain.",
+        img: "images/microfiber-pollution.jpg"
+      }
+    ];
+
+    let currentIndex = 0;
+    const image = document.querySelector(".slider-image");
+    const title = document.querySelector(".slider-title");
+    const description = document.querySelector(".slider-description");
+    const sliderContent = document.querySelector(".slider-content");
+
+    const updateSlider = () => {
+      sliderContent.classList.remove("fade");
+      void sliderContent.offsetWidth; 
+
+      image.src = sliderData[currentIndex].img;
+      title.textContent = sliderData[currentIndex].title;
+      description.textContent = sliderData[currentIndex].text;
+
+      sliderContent.classList.add("fade");
+    };
+
+    document.querySelector(".left-btn").addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + sliderData.length) % sliderData.length;
+      updateSlider();
+    });
+
+    document.querySelector(".right-btn").addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % sliderData.length;
+      updateSlider();
+    });
+
+    updateSlider(); 
+  });
+</script>
+
+
+
+    <body>
+        <header>
+            <nav class="navbar section-content">
+                <a href="#home" class="nav-logo">
+                  <img src="images/logo.png" alt="Fashion Particle Logo" class="nav-logo-img" style="height:40px; width:auto; vertical-align:middle; margin-right:10px;">
+                    <h2 class="logo-text">Fashion Particle</h2>
+                </a>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#impact" class="nav-link">Footprint</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#members" class="nav-link">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#team" class="nav-link">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#certifications" class="nav-link">Certifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#sdgs" class="nav-link">SDG's</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="hero-section" id="home">
+                <div class="section-content">
+                    <div class="hero-details">
+                 <h2 class="title">Fashion Particle</h2>
+                 <h3 class="subtitle">
+                    Weaving Sustainability Into Every Thread
+                 </h3>
+                 <p class="description">Fashion Particle is a community-driven initiative transforming the fashion industry
+                     by connecting eco-conscious suppliers with forward-thinking manufacturers. 
+                     </p>
+                    <div class="buttons">
+                        <a href="#" class="button about">About</a>
+                        <a href="#" class="button contact-us">Contact Us</a>
+                    </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <img src="images/1.png" alt="Hero" class="hero-image">
+                    </div>
+                </div>
+            </section>
+            <section class="about-section" id="about">
+                <div class="section-content">
+                    <div class="about-image-wrapper">
+                        <img src="images/2.jpg" alt="About" class="about-image">
+                    </div>
+                    <div class="about-details">
+                        <h2 class="section-title">About us</h2>
+                        <p class="text">
+                            Fashion Particle is a start-up dedicated to advancing sustainable fashion through a centralized marketplace
+                             that connects socially and environmentally conscious suppliers with manufacturers. Focused on community impact
+                             , the project raises awareness both globally and in Bremen through local outreach, partnerships,
+                              and educational initiatives. It also collaborated with Start-ups
+                               Bremen and Synthesis to drive actionable climate solutions.
+                        </p>
+                        
+                    </div>
+                </div>
+            </section>
+            <section class="impact-section" id="impact">
+  <div class="section-content">
+    <div class="impact-details">
+      <div class="impact-left">
+        <h2 class="section-title">Our Footprint</h2>
+        <div class="live-counter">
+          <h3>Water Usage</h3>
+          <iframe title='Tonnes of water used for our consumption' src='https://www.theworldcounts.com/embeds/counters/118?background_color=white&color=black&font_family=%22Helvetica+Neue%22%2C+Arial%2C+sans-serif&font_size=14' style="width: 100%; height: 100px; border: none;" scrolling="no" loading="lazy"></iframe>
+        </div>
+        <div class="live-counter">
+          <h3>Waste Generated Globally</h3>
+          <iframe title='Tonnes of waste dumped' src='https://www.theworldcounts.com/embeds/counters/63?background_color=white&color=black&font_family=%22Helvetica+Neue%22%2C+Arial%2C+sans-serif&font_size=14' style="width: 100%; height: 100px; border: none;" scrolling="no" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="impact-right">
+        <div class="impact-image-wrapper">
+          <img src="images/impact-placeholder.jpg" alt="Impact Visual" class="impact-image">
+        </div>
+        <div class="impact-text">
+          <strong>Fashion is powerful—but it comes at a cost.</strong><br><br>
+          The fashion industry is one of the world’s largest polluters, consuming vast amounts of water and generating enormous waste. At Fashion Particle, we believe in a future where style and sustainability go hand in hand. By connecting responsible suppliers and manufacturers, we’re reducing the industry’s footprint and inspiring positive change—one garment at a time.
+        </div>
+      </div>
+    </div>
+    <div class="impact-slider-wrapper">
+      <h2 class="section-title">The Hidden Costs of Fashion</h2>
+      <div class="impact-slider">
+        <button class="slider-btn left-btn">&lt;</button>
+        <div class="slider-content">
+          <img src="images/water-waste.jpg" alt="Water Waste" class="slider-image">
+          <h3 class="slider-title">Water Waste</h3>
+          <p class="slider-description">
+            It takes around <strong>2,700 liters of water</strong> to make just one cotton T-shirt. That’s enough drinking water for one person for 2.5 years!
+          </p>
+        </div>
+        <button class="slider-btn right-btn">&gt;</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="members-section" id="members">
+  <h2 class="section-title">Our Members</h2>
+  <div class="section-content">
+    <div class="members-slider">
+      <button class="slider-btn member-left-btn" aria-label="Previous member">&lt;</button>
+      <div class="member-slide fade">
+        
+      </div>
+      <button class="slider-btn member-right-btn" aria-label="Next member">&gt;</button>
+    </div>
+    <div class="members-dots"></div>
+  </div>
+</section>
+<section class="team-group-section" id="team">
+  <div class="section-content group-content">
+    <div class="group-image-wrapper">
+      <img src="images/group-photo.jpg" alt="Fashion Particle Team" class="group-image">
+    </div>
+    <div class="group-text">
+      <h2 class="section-title small">Together for a Greener Tomorrow</h2>
+      <p>
+        United by a shared vision, our team combines diverse expertise and passion to drive sustainable change in the fashion industry. 
+        Every member brings unique strengths, but together, we are committed to making a real impact—one thread at a time.
+      </p>
+    </div>
+  </div>
+</section>
+<section class="certifications-section" id="certifications">
+  <h2 class="section-title">Certifications in Focus</h2>
+  <div class="section-content certifications-content">
+    <div class="certification-card">
+      <img src="images/gots-logo.png" alt="GOTS Logo" class="certification-logo">
+      <div class="certification-info">
+        <h3 class="certification-title">GOTS</h3>
+        <p>
+          The Global Organic Textile Standard (GOTS) is the world’s leading textile processing standard for organic fibers. It ensures environmentally and socially responsible manufacturing from harvesting to labeling.
+        </p>
+      </div>
+    </div>
+    <div class="certification-card">
+      <img src="images/standard-100.png" alt="STANDARD 100 by OEKO-TEX Logo" class="certification-logo">
+      <div class="certification-info">
+        <h3 class="certification-title">STANDARD 100 by OEKO-TEX®</h3>
+        <p>
+          STANDARD 100 by OEKO-TEX® certifies that every component of a textile product has been tested for harmful substances and is harmless for human health, ensuring safer textiles for consumers.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sdgs-section" id="sdgs">
+  <h2 class="section-title">SDG's in Focus</h2>
+  <div class="section-content sdgs-grid">
+    <img src="images/3.jpg" alt="SDG 3" class="sdg-logo">
+    <img src="images/5.png" alt="SDG 5" class="sdg-logo">
+    <img src="images/8.png" alt="SDG 8" class="sdg-logo">
+    <img src="images/9.png" alt="SDG 9" class="sdg-logo">
+    <img src="images/10.png" alt="SDG 10" class="sdg-logo">
+    <img src="images/11.png" alt="SDG 11" class="sdg-logo">
+    <img src="images/12.png" alt="SDG 12" class="sdg-logo">
+    <img src="images/13.png" alt="SDG 13" class="sdg-logo">
+    
+  </div>
+</section>
+<section class="contact-section" id="contact">
+  <div class="section-content contact-content">
+    <div class="contact-info">
+      <h2 class="section-title small">Contact Us</h2>
+      <p><strong>Address:</strong> Constructor University, Bremen, Germany</p>
+      <p><strong>Email:</strong> <a href="mailto:urafizade@gmail.com">urafizade@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+4917677244182">+49 17677244182</a></p>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/mwpogzke" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="button">Send Message</button>
+    </form>
+  </div>
+</section>
+        </main>
+    </body>
+</html>
