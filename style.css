@@ -655,3 +655,8 @@ html {
   display: block;
   background: transparent; 
 }
+
+
+.event-hero {
+    padding-top: 120px;
+}
