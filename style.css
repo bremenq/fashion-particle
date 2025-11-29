@@ -173,6 +173,24 @@ a:visited {
     height: auto;
     object-fit: cover; 
   }
+
+.event-hero .hero-image-wrapper {
+    max-width: 700px;
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.event-hero .hero-image {
+    width: 100%;
+    height: 300px;           
+    object-fit: cover;       
+    border-radius: 20px;     
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);  
+    border: 3px solid rgba(255,255,255,0.4); 
+}
+
 .about-section{
     padding: 120px 0;
     background: var(--light-pink-color);
@@ -660,3 +678,4 @@ html {
 .event-hero {
     padding-top: 120px;
 }
+
