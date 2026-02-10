@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta chatset="UTF-8">
-        <meta name="viewport" content="width=device, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Fashion Particle</title>
         <link rel="stylesheet" href="style.css">
   
@@ -137,6 +137,11 @@
                   <img src="images/logo.png" alt="Fashion Particle Logo" class="nav-logo-img" style="height:40px; width:auto; vertical-align:middle; margin-right:10px;">
                     <h2 class="logo-text">Fashion Particle</h2>
                 </a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
                         <a href="#home" class="nav-link">Home</a>
@@ -180,8 +185,8 @@
                      by connecting eco-conscious suppliers with forward-thinking manufacturers. 
                      </p>
                     <div class="buttons">
-                        <a href="#" class="button about">About</a>
-                        <a href="#" class="button contact-us">Contact Us</a>
+                        <a href="#about" class="button about">About</a>
+                        <a href="#contact" class="button contact-us">Contact Us</a>
                     </div>
                     </div>
                     <div class="hero-image-wrapper">
@@ -338,5 +343,13 @@
   </div>
 </section>
         </main>
+        <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        });
+        </script>
     </body>
 </html>

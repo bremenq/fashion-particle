@@ -679,3 +679,194 @@ html {
     padding-top: 120px;
 }
 
+/* ============================================================
+   NEW RESPONSIVE STYLES (ADDED FOR MOBILE COMPATIBILITY)
+   ============================================================ */
+
+/* 1. Hamburger Menu Icon (Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--white-color);
+    transition: 0.3s;
+}
+
+/* 2. Tablet and Mobile Adjustments */
+@media screen and (max-width: 1024px) {
+    /* Navbar Adjustment */
+    .navbar .nav-menu {
+        position: fixed;
+        top: 100px;
+        left: -100%; /* Hidden off-screen */
+        flex-direction: column;
+        background: var(--primary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 20px 0;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar .nav-menu.active {
+        left: 0; /* Slide in when active */
+    }
+
+    .menu-toggle {
+        display: flex; /* Show menu icon */
+    }
+
+    /* Stack sections vertically */
+    .hero-section .section-content,
+    .about-section .section-content,
+    .impact-details,
+    .contact-content,
+    .group-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .hero-section .hero-details .subtitle,
+    .hero-section .hero-details .description {
+        max-width: 100%;
+    }
+
+    .hero-section .hero-details .buttons {
+        justify-content: center;
+    }
+
+    /* Ensure images sit on top of text on mobile */
+    .hero-image-wrapper, .about-image-wrapper {
+        order: -1; 
+        margin-right: 0;
+    }
+
+    .about-section .about-image-wrapper .about-image {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+/* 3. Small Phone Adjustments */
+@media screen and (max-width: 768px) {
+    :root {
+        --font-size-xxl: 1.8rem;
+        --font-size-xl: 1.5rem;
+    }
+
+    .section-title {
+        padding: 40px 0 60px;
+    }
+
+    .hero-section {
+        min-height: auto;
+        padding-bottom: 50px;
+    }
+
+    .sdgs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .slider-image {
+        height: 250px;
+    }
+
+    .nav-logo-img {
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-section .hero-details .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+
+/* ============================================================
+   FIX FOR HERO IMAGE OVERLAP ON SMALL SCREENS
+   ============================================================ */
+
+@media screen and (max-width: 1024px) {
+    .hero-section {
+        /* Ensure the section starts below the fixed header */
+        padding-top: 120px; 
+        min-height: auto;
+    }
+
+    .hero-section .section-content {
+        /* Stack the text and image vertically so the image has room */
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .hero-section .hero-image-wrapper {
+        /* Remove negative margins or offsets that might pull it up */
+        margin-right: 0;
+        order: -1; /* This puts the image ABOVE the text on mobile */
+        width: 100%;
+    }
+
+    .hero-section .hero-image {
+        /* Ensure the image scales correctly without cropping */
+        max-width: 90%;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-section {
+        padding-top: 100px; /* Slightly less for very small phones */
+    }
+}
+
+
+
+/* ============================================================
+   FIX FOR EVENT PAGE HERO IMAGE OVERLAP
+   ============================================================ */
+
+@media screen and (max-width: 1024px) {
+    /* Target the specific hero section on the event page */
+    .event-hero {
+        padding-top: 140px; /* Extra padding to clear the fixed header */
+        min-height: auto;
+    }
+
+    .event-hero .section-content {
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .event-hero .hero-image-wrapper {
+        order: -1; /* Move the image above the text on mobile */
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .event-hero .hero-image {
+        height: auto; /* Allow height to scale naturally on small screens */
+        max-width: 100%;
+        width: 90%; /* Slight margin for better visual framing */
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .event-hero {
+        padding-top: 110px; /* Adjusted spacing for smaller phones */
+    }
+}
