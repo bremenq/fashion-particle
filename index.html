@@ -346,9 +346,18 @@
         <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
 
+        // Toggle menu
         menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked (useful for one-page scrolling)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
         });
         </script>
     </body>

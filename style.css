@@ -6,6 +6,13 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
+/* Global fix to prevent horizontal scrolling */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 :root {
     --white-color: #fafafa;
     --dark-color: #252525;
@@ -45,6 +52,7 @@ button {
 }
 img {
     width: 100%;
+    height: auto; /* Ensure aspect ratio is kept */
 }
 
 .section-content{
@@ -71,15 +79,15 @@ header {
     background: var(--primary-color) ;
     position: fixed;
     width: 100%;
-    z-index: 5;
+    z-index: 100; /* Increased z-index */
 }
 
 header .navbar {
   display: flex;
-  padding: 32px 20px; 
+  padding: 20px; /* Reduced padding for mobile clearance */
   align-items: center;
   justify-content: space-between;
-  min-height: 100px;  
+  min-height: 80px;  
 }
 .navbar .nav-logo .nav-text{
     color: var(--white-color);
@@ -232,6 +240,7 @@ a:visited {
   margin: 0 auto;
 }
 
+/* FIX: Impact cards use width:100% on mobile to avoid pushing the screen */
 .impact-left {
   flex: 1 1 380px;
   background: var(--white-color);
@@ -240,7 +249,8 @@ a:visited {
   padding: 40px 36px;
   display: flex;
   flex-direction: column;
-  min-width: 320px;
+  min-width: 0; /* Changed from 320px to avoid overflow */
+  width: 100%;
 }
 
 .impact-right {
@@ -248,8 +258,9 @@ a:visited {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 320px;
+  min-width: 0; /* Changed from 320px */
   gap: 32px;
+  width: 100%;
 }
 
 .impact-image-wrapper {
@@ -378,8 +389,9 @@ a:visited {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 250px;
+  min-width: 0; /* Fixed fixed min-width */
   max-width: 320px;
+  width: 100%;
   margin: 0 20px;
 }
 
@@ -464,11 +476,14 @@ a:visited {
   flex: 1 1 320px;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
+/* FIX: Team image is now fully responsive */
 .group-image {
-  width: 720px;
-  height: 420px;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
   object-fit: cover;
   border-radius: var(--border-radius-m);
   box-shadow: 0 8px 32px rgba(34, 206, 0, 0.08);
@@ -515,9 +530,10 @@ a:visited {
   align-items: center;
   gap: 30px;
   padding: 36px 32px;
-  min-width: 320px;
+  min-width: 0; /* Changed from 320px */
   max-width: 420px;
   flex: 1 1 320px;
+  width: 100%;
 }
 
 .certification-logo {
@@ -561,7 +577,7 @@ a:visited {
 .sdgs-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  gap: 20px; /* Reduced gap for smaller screens */
   justify-items: center;
   align-items: center;
   max-width: 900px;
@@ -570,8 +586,9 @@ a:visited {
 }
 
 .sdg-logo {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  max-width: 120px;
+  height: auto;
   object-fit: contain;
   border-radius: var(--border-radius-s);
   background: #fff;
@@ -598,6 +615,7 @@ a:visited {
 .contact-info {
   flex: 1 1 300px;
   font-size: var(--font-size-m);
+  width: 100%;
 }
 
 .contact-info .section-title.small {
@@ -614,15 +632,17 @@ a:visited {
   text-decoration: underline;
 }
 
+/* FIX: Contact form is now flexible */
 .contact-form {
-  flex: 2 1 350px;
+  flex: 1 1 350px;
   display: flex;
   flex-direction: column;
   gap: 18px;
   background: var(--white-color);
-  padding: 36px 32px;
+  padding: 30px;
   border-radius: var(--border-radius-m);
   box-shadow: 0 4px 24px rgba(34, 206, 0, 0.07);
+  width: 100%;
 }
 
 .contact-form input,
@@ -633,6 +653,7 @@ a:visited {
   border: 1px solid var(--medium-gray-color);
   background: #f9f9f9;
   resize: none;
+  width: 100%;
 }
 
 .contact-form input:focus,
@@ -667,11 +688,9 @@ html {
 }
 
 .nav-logo-img {
-  height: 100px;     
-  max-height: 100px;
+  height: 60px;     
   width: auto;
   display: block;
-  background: transparent; 
 }
 
 
@@ -680,15 +699,15 @@ html {
 }
 
 /* ============================================================
-   NEW RESPONSIVE STYLES (ADDED FOR MOBILE COMPATIBILITY)
+   RESPONSIVE STYLES
    ============================================================ */
 
-/* 1. Hamburger Menu Icon (Hidden on Desktop) */
 .menu-toggle {
     display: none;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    z-index: 101;
 }
 
 .menu-toggle .bar {
@@ -698,13 +717,11 @@ html {
     transition: 0.3s;
 }
 
-/* 2. Tablet and Mobile Adjustments */
 @media screen and (max-width: 1024px) {
-    /* Navbar Adjustment */
     .navbar .nav-menu {
         position: fixed;
-        top: 100px;
-        left: -100%; /* Hidden off-screen */
+        top: 80px;
+        left: -100%; 
         flex-direction: column;
         background: var(--primary-color);
         width: 100%;
@@ -712,17 +729,19 @@ html {
         transition: 0.3s;
         padding: 20px 0;
         box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        z-index: 99;
+        height: calc(100vh - 80px);
+        overflow-y: auto;
     }
 
     .navbar .nav-menu.active {
-        left: 0; /* Slide in when active */
+        left: 0; 
     }
 
     .menu-toggle {
-        display: flex; /* Show menu icon */
+        display: flex; 
     }
 
-    /* Stack sections vertically */
     .hero-section .section-content,
     .about-section .section-content,
     .impact-details,
@@ -742,19 +761,18 @@ html {
         justify-content: center;
     }
 
-    /* Ensure images sit on top of text on mobile */
     .hero-image-wrapper, .about-image-wrapper {
         order: -1; 
         margin-right: 0;
+        width: 100%;
     }
 
     .about-section .about-image-wrapper .about-image {
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
     }
 }
 
-/* 3. Small Phone Adjustments */
 @media screen and (max-width: 768px) {
     :root {
         --font-size-xxl: 1.8rem;
@@ -768,19 +786,15 @@ html {
     .hero-section {
         min-height: auto;
         padding-bottom: 50px;
+        padding-top: 100px;
     }
 
     .sdgs-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
     }
 
     .slider-image {
-        height: 250px;
-    }
-
-    .nav-logo-img {
-        height: 60px;
+        height: 200px;
     }
 }
 
@@ -789,84 +803,8 @@ html {
         flex-direction: column;
         gap: 15px;
     }
-}
-
-
-/* ============================================================
-   FIX FOR HERO IMAGE OVERLAP ON SMALL SCREENS
-   ============================================================ */
-
-@media screen and (max-width: 1024px) {
-    .hero-section {
-        /* Ensure the section starts below the fixed header */
-        padding-top: 120px; 
-        min-height: auto;
-    }
-
-    .hero-section .section-content {
-        /* Stack the text and image vertically so the image has room */
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        gap: 20px;
-    }
-
-    .hero-section .hero-image-wrapper {
-        /* Remove negative margins or offsets that might pull it up */
-        margin-right: 0;
-        order: -1; /* This puts the image ABOVE the text on mobile */
-        width: 100%;
-    }
-
-    .hero-section .hero-image {
-        /* Ensure the image scales correctly without cropping */
-        max-width: 90%;
-        height: auto;
-        margin: 0 auto;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .hero-section {
-        padding-top: 100px; /* Slightly less for very small phones */
-    }
-}
-
-
-
-/* ============================================================
-   FIX FOR EVENT PAGE HERO IMAGE OVERLAP
-   ============================================================ */
-
-@media screen and (max-width: 1024px) {
-    /* Target the specific hero section on the event page */
-    .event-hero {
-        padding-top: 140px; /* Extra padding to clear the fixed header */
-        min-height: auto;
-    }
-
-    .event-hero .section-content {
-        flex-direction: column; /* Stack image and text vertically */
-        text-align: center;
-        gap: 30px;
-    }
-
-    .event-hero .hero-image-wrapper {
-        order: -1; /* Move the image above the text on mobile */
-        width: 100%;
-        margin-right: 0;
-    }
-
-    .event-hero .hero-image {
-        height: auto; /* Allow height to scale naturally on small screens */
-        max-width: 100%;
-        width: 90%; /* Slight margin for better visual framing */
-        margin: 0 auto;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .event-hero {
-        padding-top: 110px; /* Adjusted spacing for smaller phones */
+    
+    .nav-logo .logo-text {
+        font-size: 1.2rem;
     }
 }
